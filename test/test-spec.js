@@ -6,6 +6,9 @@ Cell.prototype.alive = function(){
 	return false;
 } 
 
+Cell.prototype.applyRules = function(){}
+
+
 describe('Game of Life', function() {
   it('a new cell is dead by default', function(){
 	var cell = new Cell()
@@ -18,4 +21,6 @@ describe('Game of Life', function() {
 	cell.applyRules();
 	expect(cell.alive()).toBe(false);
   });
+
+
 });
