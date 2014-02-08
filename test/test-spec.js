@@ -32,10 +32,17 @@ Board.prototype.numberOfRows = function(){
 
 describe('Game of Life', function() {
   describe("Board", function() {
+    var board
+    beforeEach(function () {
+      board = new Board(3, 3)
+    })
     it("creates a board", function() {
-      var board = new Board(3, 3)
       expect(board.numberOfRows()).toBe(3)
       expect(board.getRow(0).length).toBe(3)
+    })
+    
+    it("contains cells", function() {
+      expect(board.getRow(0)[0]).
     })
   })
   
