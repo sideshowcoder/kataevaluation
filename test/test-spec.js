@@ -15,12 +15,27 @@ Cell.prototype.applyRules = function(){
 	}
 }
 
+function Board(numberRows, numberColumns){
+  this._rows = Array(numberRows)
+  for(var j = 0; j < numberRows; j++) {
+    this._rows[j] = Array(numberColumns)
+  }
+}
+
+Board.prototype.getRow = function(index){
+  return this._rows[index]
+}
+
+Board.prototype.numberOfRows = function(){
+  return this._rows.length
+}
+
 describe('Game of Life', function() {
   describe("Board", function() {
     it("creates a board", function() {
       var board = new Board(3, 3)
-      expect(board.row(0).length).toBe(3)
-      expect(board.rows()).toBe(3)
+      expect(board.numberOfRows()).toBe(3)
+      expect(board.getRow(0).length).toBe(3)
     })
   })
   
