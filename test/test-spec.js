@@ -7,6 +7,10 @@ Cell.prototype.alive = function(){
 } 
 
 Cell.prototype.applyRules = function(){
+	if(this.neighbours > 3) {
+		this._alive = false
+	}
+	
 	if(this.neighbours === 3) {
 		this._alive = true
 	}
