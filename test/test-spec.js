@@ -16,34 +16,43 @@ Cell.prototype.applyRules = function(){
 }
 
 describe('Game of Life', function() {
-  var cell
-  beforeEach(function(){
-    cell = new Cell()
+  describe("Board", function() {
+    it("creates a board", function() {
+      var board = new Board(3, 3)
+      expect(board.row(0).length).toBe(3)
+      expect(board.rows()).toBe(3)
+    })
   })
   
-  it('a new cell is dead by default', function(){
-	  expect(cell.alive()).toBe(false)
-  });
+  describe("Cell", function() {
+    var cell
+    beforeEach(function(){
+      cell = new Cell()
+    })
 
-  it('live cell with less than two live neighbors dies', function(){
-	  cell._alive = true;
-	  cell.neighbours = 1;
-	  cell.applyRules();
-	  expect(cell.alive()).toBe(false);
-  });
-  
-  it("a living cell with more than 3 neighbours dies", function(){
-	  cell._alive = true;
-	  cell.neighbours = 4;
-	  cell.applyRules();
-	  expect(cell.alive()).toBe(false); 
+    it('is dead by default', function(){
+  	  expect(cell.alive()).toBe(false)
+    });
+
+    it('live cell with less than two live neighbors dies', function(){
+  	  cell._alive = true;
+  	  cell.neighbours = 1;
+  	  cell.applyRules();
+  	  expect(cell.alive()).toBe(false);
+    });
+
+    it("a living cell with more than 3 neighbours dies", function(){
+  	  cell._alive = true;
+  	  cell.neighbours = 4;
+  	  cell.applyRules();
+  	  expect(cell.alive()).toBe(false); 
+    })
+
+    it('dead cell with exactly three live neighbors comes alive', function(){
+      cell._alive = false
+  	  cell.neighbours = 3;
+  	  cell.applyRules();
+  		expect(cell.alive()).toBe(true);
+  	});
   })
-	
-  it('dead cell with exactly three live neighbors comes alive', function(){
-	  cell.neighbours = 3;
-	  cell.applyRules();
-		expect(cell.alive()).toBe(true);
-	});
-	
-	
 });
