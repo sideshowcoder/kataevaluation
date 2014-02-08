@@ -21,6 +21,13 @@ describe('Game of Life', function() {
 	cell.applyRules();
 	expect(cell.alive()).toBe(false);
   });
-
+	
+	it('dead cell with exactly three live neighbors comes alive', function(){
+		var cell = new Cell();
+		cell.neighbours = 3;
+		cell.applyRules();
+		expect(cell.alive()).toBe(true);
+	  });
+	
 
 });
