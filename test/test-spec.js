@@ -1,12 +1,20 @@
 function Cell(){
-	
+	this._alive = false
 }
 
 Cell.prototype.alive = function(){
-	return false;
+	return this._alive;
 } 
 
-Cell.prototype.applyRules = function(){}
+Cell.prototype.applyRules = function(){
+	if(this.neighbours === 3) {
+		this._alive = true
+	}
+	if(this.neighbours < 2) {
+		this._alive = false;
+	}
+	
+}
 
 
 describe('Game of Life', function() {
@@ -17,6 +25,7 @@ describe('Game of Life', function() {
 
   it('live cell with less than two live neighbors dies', function(){
 	var cell = new Cell();
+	cell._alive = true;
 	cell.neighbours = 1;
 	cell.applyRules();
 	expect(cell.alive()).toBe(false);
@@ -28,6 +37,7 @@ describe('Game of Life', function() {
 		cell.applyRules();
 		expect(cell.alive()).toBe(true);
 	  });
+	
 	
 
 });
